@@ -1,0 +1,26 @@
+public class sushu{
+	public static void main(String[] args){
+		final int Sushu = 96;
+		final int line = 12;
+		int count = 0;
+    int number = 2;
+		System.out.println("The first 96 numbers are:\n");
+		while(count <= Sushu){
+			boolean Isprime = true;
+			for(int divisor = 2;divisor <= number / 2;divisor++){
+				if(number % divisor == 0){
+			    Isprime = false;
+			    break;
+			  }
+        if(Isprime){
+	    	  count++;
+	    	  if(count % line == 0)
+	    	  System.out.println(number);
+	    	}else{
+	    		  System.out.print(number+" ");
+	      }
+	      }
+	    }
+	  number++;	    	
+		}
+	}

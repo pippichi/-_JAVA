@@ -1,0 +1,5 @@
+publiic class Canine extends Animal{
+  public void roam(){
+    System.out.println("犬科都走犬步");
+  }
+}

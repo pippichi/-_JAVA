@@ -1,0 +1,5 @@
+public interface getData{
+	public String getColor();
+	public String getTaste();
+	public int getSize();
+	}

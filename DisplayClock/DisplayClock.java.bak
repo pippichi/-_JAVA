@@ -1,0 +1,134 @@
+import javax.swing.JFrame;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.FontMetrics;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.BorderLayout;
+import javax.swing.Timer;
+import java.util.Date;
+import java.uitl.Calendar;
+
+public class DisplayClock extends JFrame{
+	public DisplayClock(){
+		StillClock clock=new StillClock();
+		MessagePanel messagePanel1=new MessagePanel(clock.getHour()+" : "+
+		clock.getMinute()+" : "+clock.getSecond());
+		messagePanel1.setFont(new Font("Courier",Font.BOLD,16));
+		messagePanel1.setCentered(true);
+		messagePanel1.setForeground(Color.BLUE);
+		add(clock);
+		add(messagePanel1,BorderLayout.SOUTH);
+		}
+		
+		public static void main(String[] args){
+			DisplayClock frame=new DisplayClock();
+			frame.setLocationRelativeTo(null);
+			frame.setSize(300,350);
+			frame.setTitle("DisplayClock");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setVisible(true);
+			}
+	}
+	
+class MessagePanel extends JPanel{
+	private String message;
+	private int xCoordinate=20;
+	private int yCoordinate=40;
+	private boolean centered;
+	public MessagePanel(){}
+	public MessagePanel(String message){
+		this.message=message;
+		}
+	public void setCentered(boolean centered){
+		this.centered=centered;
+		repaint();
+		}
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		int xCenter=getWidth()/2;
+		int yCenter=getHeight()/2;
+		int clockRadius=(int)(Math.min(getHeight(),getWidth())*0.5*0.8);
+		g.setColor(Color.BLACK);
+		g.drawOval((xCenter-clockRadius),(yCenter-clockRadius),2*clockRadius,2*clockRadius);
+		
+		int sLength=(int)(clockRadius * 0.8);
+		int xSecond=(int)(xCenter+sLength*Math.sin(second*(2*Math.PI/60)));
+		int ySecond=(int)(yCenter-sLength*Math.cos(second*(2*Math.PI/60)));
+		g.setColor(Color.RED);
+		g.drawLine(xCenter,yCenter,xSecond,ySecond);
+		
+		int mLength=(int)(clockRadius*0.65);
+		int xMinute=(int)(xCenter+mLength*Math.sin(minute*(2*Math.PI/60)));
+		int yMinute=(int)(yCenter-mLength*Math.cos(minute*(2*Math.PI/60)));
+		g.setColor(Color.blue);
+		g.drawLine(xCenter,yCenter,xMinute,yMinute);
+		
+		int hLength=(int)(clockRadius*0.5);
+		int xHour=(int)(xCenter+hLength*Math.sin((hour%12+minute/60.0+second/3600.0)*(2*Math.PI/12)));
+		int yHour=(int)(yCenter-hLength*Math.cos((hour%12+minute/60.0+second/3600.0)*(2*Math.PI/12)));
+		g.setColor(Color.green);
+		g.drawLine(xCenter,yCenter,xHour,yHour);
+		
+		FontMetrics fm=g.getFontMetrics();
+		int stringWidth=fm.stringWidth(message);
+		int stringAscent=fm.getAscent();
+		if(centered){
+			xCoordinate=getWidth()/2-stringWidth/2;
+			yCoordinate=getHeight()/2-stringAscent;
+			g.drawString(message,xCoordinate,yCoordinate);
+			}
+		else{
+			g.drawString(message,xCoordinate,yCoordinate);
+			}
+		}
+		public void setCurrentTime(){
+			Calendar calendar=new GregorianCalendar();
+			this.hour=calendar.get(Calendar.HOUR_OF_DAY);
+			this.minute=calendar.get(Calendar.MINUTE);
+			this.second=calendar.get(Calendar.SECOND);
+			}
+		
+		public Dimension getPreferredSize(){
+			return new Dimension(200,200);
+			}
+		}
+class StillClock extends JPanel{
+	private int hour;
+	private int minute;
+	private int second;
+	public StillClock(){
+		}
+	public StillClock(int hour,int minute,int second){
+		this.hour=hour;
+		this.minute=minute;
+		this.second=second;
+		}
+	public int getHour(){
+		return hour;
+		}
+	public int getMinute(){
+		return minute;
+		}
+	public int getSecond(){
+		return second;
+		}
+	public void setHour(int hour){
+		if(hour<24 &&hour>=0){
+		this.hour=hour;
+		repaint();
+	}
+		}
+  public void setMinute(int minute){
+  	if(minute<60 &&minute>=0){
+		this.minute=minute;
+		repaint();
+  }
+		}
+	public void setSecond(int second){
+		if(second<60 && second>=0){
+		this.second=second;
+		repaint();
+	}
+		}
+	}

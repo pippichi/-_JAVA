@@ -1,0 +1,60 @@
+import javax.swing.JFrame;
+import javax.swing.Timer;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.event.*;
+import java.awt.Color;
+
+public class MouseAnimationDemo extends JFrame{
+	public MouseAnimationDemo(){
+		MouseMoving mousemoving = new MouseMoving("Hello");
+		add(mousemoving);	
+	}
+	
+	public static void main(String[] args){
+		MouseAnimationDemo frame = new MouseAnimationDemo();
+		frame.setTitle("MouseAnimationDemo");
+		frame.setSize(300,300);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);	
+	}
+	
+	static class MouseMoving extends JPanel{
+		private String message = "Hello";
+		private int x = 10;
+		private int y = 10;
+
+		public MouseMoving(String s){
+			message = s;
+			Timer timer = new Timer(1000,new TimerListener());
+			timer.start();
+			addMouseListener(new MouseAdapter(){
+				public void mousePressed(MouseEvent e){
+					timer.stop();					
+				}					
+				public void mouseReleased(MouseEvent e){
+				  timer.start();	
+				}
+			});
+		}
+		class TimerListener implements ActionListener{
+			public void actionPerformed(ActionEvent e){
+				repaint();	
+			}	
+		}
+		protected void paintComponent(Graphics g){
+			super.paintComponent(g);
+			g.setColor(Color.blue);
+			if(x>getWidth()){
+				x=-20;	
+			}	
+			if(y>getHeight()){
+				y=-20;	
+			}
+			x+=5;
+			y+=5;
+			g.drawString(message,x,y);
+		}
+	}	
+}

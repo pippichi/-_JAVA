@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+public class TestArrayList{
+  public static void main(String[] args){
+    Course course1=new Course("English");
+    course1.addStudent("Marry");
+    course1.addStudent("Jeck");
+    course1.addStudent("Q");
+    course1.addStudent("Yf");
+    System.out.println("The number of students in \""+course1.getCourseName()+"\" is "+
+    course1.getNumberOfStudents()+" and they are: ");
+    ArrayList<String>student1=course1.getStudents();
+    System.out.println(student1+" ");
+    course1.dropStudent("Marry");
+		System.out.println("删掉Marry后，\""+course1.getCourseName()+"\"的人数: "+course1.getNumberOfStudents()+" and they are: ");
+		System.out.println(student1+" ");
+  }
+}

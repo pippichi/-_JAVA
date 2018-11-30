@@ -1,0 +1,31 @@
+import javax.swing.JOptionPane;
+public class TestLinearEquation{
+ public static void main(String[] args){
+  LinearEquation le=new LinearEquation();
+  String str1=JOptionPane.showInputDialog(null,"请输入a的值：");
+  double a=Double.parseDouble(str1);
+  le.setA(a);
+  String str2=JOptionPane.showInputDialog(null,"请输入b的值：");
+  double b=Double.parseDouble(str2);
+  le.setB(b);
+  String str3=JOptionPane.showInputDialog(null,"请输入c的值：");
+  double c=Double.parseDouble(str3);
+  le.setC(c);
+  String str4=JOptionPane.showInputDialog(null,"请输入d的值：");
+  double d=Double.parseDouble(str4);
+  le.setD(d);
+  String str5=JOptionPane.showInputDialog(null,"请输入e的值：");
+  double e=Double.parseDouble(str5);
+  le.setE(e);
+  String str6=JOptionPane.showInputDialog(null,"请输入f的值：");
+  double f=Double.parseDouble(str6);
+  le.setF(f);
+  if(le.isSolvable()){
+   le.getX(le.getE(),le.getD(),le.getB(),le.getC(),le.getF());
+   le.getY(le.getE(),le.getD(),le.getB(),le.getC(),le.getF());
+  }
+  else{
+   JOptionPane.showMessageDialog(null,"The equation has no solution.","提示框",JOptionPane.INFORMATION_MESSAGE);
+  }
+ }
+}

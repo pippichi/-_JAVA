@@ -1,0 +1,7 @@
+public class cheetah{
+	public void run(){
+		System.out.println("ÁÔ±ªËÄÌõÍÈÅÜ£¡");
+	}
+	public cheetah(){
+	}
+}

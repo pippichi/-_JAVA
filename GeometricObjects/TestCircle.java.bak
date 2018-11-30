@@ -1,0 +1,26 @@
+public class TestCircle{
+	public static void main(String[] args)throws Exception{
+		Circle c1=new Circle(2);
+		Circle c2=(Circle)c1.clone();
+		Circle c3=c1;
+		if(c1.equals(c2)==true){
+			System.out.println("ok");
+			}
+		else{
+			System.out.println("false");
+			}
+		if(c1.equals(c3)==true){
+			System.out.println("ok");
+			}
+		else{
+			System.out.println("false");
+			}
+			
+		try{
+			c1.clone();
+			}
+		catch(Exception e){
+			throw new Exception("clone() wrong!");
+			}
+		}
+	}

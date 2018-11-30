@@ -1,0 +1,80 @@
+import javax.swing.JOptionPane;
+public class LinearEquation{
+ private double a;
+ private double b;
+ private double c;
+ private double d;
+ private double e;
+ private double f;
+ boolean on=true;
+ 
+ public LinearEquation(){
+ }
+ public LinearEquation(double na,double nb,double nc,double nd,double ne,double nf){
+  a=na;
+  b=nb;
+  c=nc;
+  d=nd;
+  e=ne;
+  f=nf;
+ }
+ public double getA(){
+ return a;
+ }
+ public double getB(){
+ return b;
+ }
+ public double getC(){
+ return c;
+ }
+ public double getD(){
+ return d;
+ }
+ public double getE(){
+ return e;
+ }
+ public double getF(){
+ return f;
+ }
+ public void setA(double A){
+  a=A;
+ }
+ public void setB(double B){
+  b=B;
+ }
+ public void setC(double C){
+  c=C;
+ }
+ public void setD(double D){
+  d=D;
+ }
+ public void setE(double E){
+  e=E;
+ }
+ public void setF(double F){
+  f=F;
+ }
+ public boolean isSolvable(){
+  if((a*d-b*c)!=0){
+   on=true;
+  }
+  else{
+   on=false;
+  }
+  return on;
+ }
+ public void getX(double e,double d,double b,double c,double f){
+  double x;
+  if(on){
+  x=(e*d-b*f)/(a*d-b*c);
+  JOptionPane.showMessageDialog(null,"x="+x,"x的值",JOptionPane.INFORMATION_MESSAGE);
+ }
+ }
+ public void getY(double e,double d,double b,double c,double f){
+  double y;
+  if(on){
+   y=(a*f-e*c)/(a*d-b*c);
+   JOptionPane.showMessageDialog(null,"y="+y,"y的值",JOptionPane.INFORMATION_MESSAGE);
+  }
+ }
+}

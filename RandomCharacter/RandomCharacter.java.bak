@@ -1,0 +1,18 @@
+public class RandomCharacter{
+public static char getRandomCharacter(char n1,char n2){
+return (char)(n1+Math.random()*(n2-n1+1));
+}
+public static void main(String[] args){
+return getRandomCharacter('a','z');
+}
+/*public static char getRandomupperCastLetter(){
+return getRandomCharacter('A','Z');
+}
+public static char getRandomdigitCharacter(){
+return getRandomCharacter('0','9');
+}
+public static char getRandomCharacter(){
+return getRandomCharacter('\u0000','\uFFFF');
+}
+}*/
+}

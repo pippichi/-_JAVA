@@ -1,0 +1,13 @@
+import javax.swing.JoptionPane;
+public class Tijis{
+	public static void main(String[] args){
+		String str1=JOptionPane.showInputDialog(null,"请输入圆柱的半径：");
+		double r=Double.praseDouble(str1);
+		String str2=JOptionPane.showInputDialog(null,"请输入圆柱的高：");
+		double h=Double.praseDouble(str2);
+		double Tijis=(int)(r*r*3.14159*100)/100.0;
+    JOptionPane.showMessageDialog(null,"yuanzhudetiji"+Tijis,"yuanzhu",JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+
